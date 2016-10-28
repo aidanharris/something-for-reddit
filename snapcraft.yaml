@@ -1,0 +1,47 @@
+name: something-for-reddit # you probably want to 'snapcraft register <name>'
+version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
+summary: A simple Reddit client for GNOME, built for touch, mouse and VIM keyboards. # 79 char long summary
+description: |
+  Features:
+    * Touchscreen tested interface
+    * VIM style keybindings
+    * View subreddits, comments and user pages
+    * Vote on comments and links, write replies
+    * Integrated WebKit2 browser for viewing links
+    * Multi-account support
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+apps:
+  tool:
+    command: reddit-is-gtk
+
+parts:
+  something-for-reddit:
+    source: .
+    plugin: autotools
+    install-via: prefix
+    build-packages:
+      - build-essential
+      - valac
+      - git
+      - gnome-common
+      - libgtk-3-dev
+      - libglib2.0-dev
+      - libjson-glib-dev
+      - gobject-introspection
+      - libwebkit2gtk-4.0-37
+      - libwebkit2gtk-4.0-dev
+      - debhelper
+      - libsoup2.4-dev
+      - python3-arrow
+      - python3-markdown
+      - ruby-sass
+    stage-packages:
+      - libc6
+      - gir1.2-webkit2-3.0
+      - libgtk-3-0
+      - libsoup2.4-1
+      - python3-arrow
+      - python3-markdown
